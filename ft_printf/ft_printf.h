@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 14:55:11 by sapupier          #+#    #+#             */
-/*   Updated: 2025/01/27 15:10:42 by sapupier         ###   ########.fr       */
+/*   Created: 2024/11/06 15:38:27 by sapupier          #+#    #+#             */
+/*   Updated: 2024/11/25 15:33:04 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdio.h>
-# include <stdlib.h>
 # include <unistd.h>
-#include <string.h>
-# include <sys/wait.h>
-# include "libft.h"
+# include <stdarg.h>
+# include <stdlib.h>
 
-
-int access(const char *pathname, int mode);
-int dup2(int oldfd, int newfd);
-int pipe(int pipefd[2]);
-pid_t fork(void);
-pid_t waitpid(pid_t pid, int *status, int options);
-pid_t wait(int *status);
-int execve(const char *filename, char *const argv[], char *const envp[]);
-
-
+int		ft_printf(const char *format, ...);
+int		ft_putchar_pf(char c);
+int		ft_putnbr_hex_pf(unsigned int n, int uppercase);
+int		ft_putnbr_pf(int n);
+int		ft_putnbr_u_pf(unsigned int n);
+int		ft_putptr_pf(void *ptr);
+int		ft_putstr_pf(char *str);
 #endif
