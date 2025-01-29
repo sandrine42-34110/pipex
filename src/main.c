@@ -6,7 +6,7 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:18:15 by sapupier          #+#    #+#             */
-/*   Updated: 2025/01/29 10:38:29 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/01/29 11:34:06 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ int main(int argc, char **argv, char **env)
 {
 	(void)argv;
 	(void)argc;
-	//char	*path;
+	char	**path;
 	// int		i;
 	
 	// i = 0;
 	// path = ft_path(env);
-
 	// printf(ft_strjoin(argv[i], path[i]));
 	// while (path[i])
 	// {
@@ -39,38 +38,12 @@ int main(int argc, char **argv, char **env)
 	// 	i++;
 	// }
 	
-
-	ft_path(env, argv);
+	path = ft_path(env);
+	find_path(path, argv[2]);
+	find_path(path, argv[3]);
+	
 	return (0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-int	main(int argc, char **argv, char **env)
-{
-	
-}
-*/
-
-
-
-
-
-
-
 
 
 

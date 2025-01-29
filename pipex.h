@@ -6,7 +6,7 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:55:11 by sapupier          #+#    #+#             */
-/*   Updated: 2025/01/29 10:28:22 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/01/29 11:34:12 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@
 # include <errno.h>
 # include "libft.h"
 
-int		access(const char *pathname, int mode);
 int		dup2(int oldfd, int newfd);
 int		pipe(int pipefd[2]);
 pid_t	fork(void);
 pid_t	waitpid(pid_t pid, int *status, int options);
 pid_t	wait(int *status);
-int		execve(const char *filename, char *const argv[], char *const envp[]);
+//int		execve(char *path, char *argv, char *env);
 int		main(int argc, char **argv, char **env);
 //int		ft_printf(const char *format, ...);
-char	**ft_path(char **env, char **argv);
+char	**ft_path(char **env);
+char	**find_path(char **path, char *argv);
 #endif
