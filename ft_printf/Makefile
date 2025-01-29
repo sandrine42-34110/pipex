@@ -1,4 +1,4 @@
-NAME = libftprintf.a
+NAME = ftprintf.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I.

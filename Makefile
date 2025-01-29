@@ -6,7 +6,9 @@ NAME = pipex
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -I ./
 
-SRC =       .c \
+SRC = main.c \
+	utils.c
+
 
 OBJS = ${SRC:%.c=obj/%.o}
 
@@ -19,7 +21,7 @@ $(LIBFT):
 	@make -s -C $(LIBFT_DIR) bonus
 	@echo "compilating $@"
 
-obj/%.o: src/%.c push_swap.h
+obj/%.o: src/%.c pipex.h
 	@mkdir -p obj
 	@${CC} ${CFLAGS} -c $< -o $@ -I ./libft
 
