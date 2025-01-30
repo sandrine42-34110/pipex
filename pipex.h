@@ -6,7 +6,7 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:55:11 by sapupier          #+#    #+#             */
-/*   Updated: 2025/01/30 12:02:52 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:54:14 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <errno.h>
+# include <fcntl.h>
 # include "libft.h"
 
 int		dup2(int oldfd, int newfd);
@@ -34,5 +35,5 @@ int		main(int argc, char **argv, char **env);
 char	**ft_path(char **env);
 char	*find_path(char **path, char *cmd);
 int		exec_cmd(char *path, char **argv);
-
+int		open_file(char **argv, int flags);
 #endif

@@ -6,7 +6,7 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:18:15 by sapupier          #+#    #+#             */
-/*   Updated: 2025/01/30 12:02:26 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:54:58 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,6 @@
 // }
 
 
-// char	**cmd_opt(const char *cmd_path)
-// {
-// 	char	**cmd_opt;
-
-// 	cmd_opt = ft_split(cmd_path, ' ');
-// 	if (!cmd_opt)
-// 	{
-//         perror("ft_split failed");
-//         return NULL;
-//     }
-//     return cmd_opt;
-// }
-
-
-
 
 int main(int argc, char **argv, char **env)
 {
@@ -65,6 +50,13 @@ int main(int argc, char **argv, char **env)
 	// }
 	// i = 0;
 
+	int	infile;
+	int	outfile;
+
+	infile = open_file(&argv[1], O_RDONLY);
+	outfile = open_file(&argv[4], O_WRONLY | O_CREAT | O_TRUNC);
+	
+
 	cmd = ft_split(argv[1], ' ');
 	path = ft_path(env);
 	path1 = find_path(path, cmd[0]);
@@ -77,9 +69,9 @@ int main(int argc, char **argv, char **env)
             perror("Error execve for command 1");
             return 1;
         }
-
-
-	
+	free(path1);
+	free(cmd[0]);
+	free(cmd);
 	// if (path1 && path2)
     // {
 	// 	if (exec_cmd(path1, ft_split(argv[1], ' ')) == -1)

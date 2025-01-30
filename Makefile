@@ -7,6 +7,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -I ./
 
 SRC = main.c \
+	pipex.c \
 	utils.c
 
 

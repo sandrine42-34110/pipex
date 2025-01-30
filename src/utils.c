@@ -6,7 +6,7 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:58:05 by sapupier          #+#    #+#             */
-/*   Updated: 2025/01/30 12:02:05 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:10:34 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,17 @@ char	*find_path(char **path, char *cmd)
 	while (path[i])
 	{
 		folder = ft_strjoin(path[i], "/");
+		if (!folder)
+			return (NULL);
 		cmd_path = ft_strjoin(folder, cmd);
-		printf("%s\n", cmd_path);
+		free(folder);
+		//printf("%s\n", cmd_path);
+		if (!cmd_path)
+			return (NULL);
 		if (access(cmd_path, X_OK) == 0)
 			return (cmd_path);
-		// if (access(ft_strjoin(path[i], argv), X_OK) == 0)
-		// 	return (ft_strjoin(path[i], argv));
 		free(cmd_path);
-		free(folder);
+		//free(folder);
 		i++;
 	}
 	return (0);
@@ -58,26 +61,13 @@ char	*find_path(char **path, char *cmd)
 
 int	exec_cmd(char *path, char **argv)
 {
-	//char	**cmd_opt;
-
-	//cmd_opt = ft_split(argv[2], ' ');
-	
 	execve(path, argv, NULL);
-	
-	//execve(path, argv, NULL);
-	
-	//if (execve(path, cmd_opt, NULL) == -1)
-	// {
-    //  	perror("Error execve");
-    // 	free(path);
-	//     exit(1);
-	// }
-	// else
-	// {
-	// 	free(path);
-	// 	fprintf(stderr, "Command not found\n");
-	// 	return (-1);
-	// }
+	if (execve(path, argv, NULL) == -1)
+	{
+     	perror("Error execve");
+    	free(path);
+	    exit(1);
+	}
 	return (0);
 }
 

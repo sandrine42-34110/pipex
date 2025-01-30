@@ -6,7 +6,7 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:18:15 by sapupier          #+#    #+#             */
-/*   Updated: 2025/01/30 08:21:43 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:24:40 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,21 @@ void ft_pipe(int pipe_fd[2])
 		exit (1);
 	}
 }
+
+int	open_file(char **argv, int flags)
+{
+	(void)flags;
+	int	fd;
+	
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+	{
+		perror("Erreur lors de l'ouverture du fichier");
+        return -1;
+	}
+	return (fd);
+}
+
 // Creer processus enft
 pid_t	ft_process()	
 {
@@ -32,6 +47,7 @@ pid_t	ft_process()
 		perror("fork");
 		exit (1);
 	}
+	return (pid);
 }
 
 // Process parent : ecrit ds le pipe
