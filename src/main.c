@@ -6,7 +6,7 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:18:15 by sapupier          #+#    #+#             */
-/*   Updated: 2025/01/30 09:08:38 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:02:26 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,18 @@
 // }
 
 
-char	**cmd_opt(const char *cmd_path)
-{
-	char	**cmd_opt;
+// char	**cmd_opt(const char *cmd_path)
+// {
+// 	char	**cmd_opt;
 
-	cmd_opt = ft_split(cmd_path, ' ');
-	if (!cmd_opt)
-	{
-        perror("ft_split failed");
-        return NULL;
-    }
-    return cmd_opt;
-}
-
-
-
-
-
+// 	cmd_opt = ft_split(cmd_path, ' ');
+// 	if (!cmd_opt)
+// 	{
+//         perror("ft_split failed");
+//         return NULL;
+//     }
+//     return cmd_opt;
+// }
 
 
 
@@ -55,36 +50,57 @@ int main(int argc, char **argv, char **env)
 {
 	(void)argv;
 	(void)argc;
+	(void) env;
 	char	**path;
 	char	*path1;
-	char	*path2;
+	char	**cmd;
+	// char	*path2;
 	
 	//const char	*cmd1;
-	// int		i;
-	if (argc != 5)
-	{
-		write(1, "Error\n", 6);
-		return (1);
-	}
+	//int		i;
+	// if (argc != 5)
+	// {
+	// 	write(1, "Error\n", 6);
+	// 	return (1);
+	// }
 	// i = 0;
+
+	cmd = ft_split(argv[1], ' ');
 	path = ft_path(env);
-	path1 = find_path(path, argv[2]);
-	path2 = find_path(path, argv[3]);
-	printf("%s\n%s\n", path1, path2);
-	if (path1 && path2)
-    {
-		if (exec_cmd(env, argv[1]) == -1)
+	path1 = find_path(path, cmd[0]);
+	// //printf("i\n");
+	// path2 = find_path(path, ft_split(argv[3], ' '));
+	// //printf("%s\n%s\n", path1, path2);
+	
+	if (exec_cmd(path1, cmd) == -1)
         {
             perror("Error execve for command 1");
             return 1;
         }
-    }
-    else
-    {
-        fprintf(stderr, "Command not found: %s or %s\n", argv[1], argv[2]);
-        return 1;
-    }
+
+
 	
+	// if (path1 && path2)
+    // {
+	// 	if (exec_cmd(path1, ft_split(argv[1], ' ')) == -1)
+    //     {
+    //         perror("Error execve for command 1");
+    //         return 1;
+    //     }
+	// 	if (exec_cmd(path1, ft_split(argv[2], ' ')) == -1)
+    //     {
+    //         perror("Error execve for command 1");
+    //         return 1;
+    //     }
+    // }
+    // else
+    // {
+    //     fprintf(stderr, "Command not found: %s or %s\n", argv[1], argv[2]);
+    //     return 1;
+    // }
+	// char *tab[] ={"ls", "-l", "-a", NULL};
+	// execve("/usr/bin/ls", tab, NULL );
+	// find_path(path, argv);
 	return (0);
 }
 

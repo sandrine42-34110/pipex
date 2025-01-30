@@ -6,7 +6,7 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:55:11 by sapupier          #+#    #+#             */
-/*   Updated: 2025/01/29 13:51:15 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:02:52 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ pid_t	wait(int *status);
 int		main(int argc, char **argv, char **env);
 //int		ft_printf(const char *format, ...);
 char	**ft_path(char **env);
-char	*find_path(char **path, char *argv);
-char	exec_cmd(char **env, char *argv);
+char	*find_path(char **path, char *cmd);
+int		exec_cmd(char *path, char **argv);
 
 #endif

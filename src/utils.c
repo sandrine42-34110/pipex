@@ -6,7 +6,7 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:58:05 by sapupier          #+#    #+#             */
-/*   Updated: 2025/01/30 09:09:59 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:02:05 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,20 @@ char	**ft_path(char **env)
 	return (0);
 }
 
-char	*find_path(char **path, char *argv)
+char	*find_path(char **path, char *cmd)
 {
 	char	*folder;
-	char	*cmd_path;
+	char	*cmd_path;	
+	//char	**cmd;
 	int		i;
 	
 	i = 0;
+	//cmd = ft_split(argv[1], ' ');
 	while (path[i])
 	{
 		folder = ft_strjoin(path[i], "/");
-		cmd_path = ft_strjoin(folder, argv);
+		cmd_path = ft_strjoin(folder, cmd);
+		printf("%s\n", cmd_path);
 		if (access(cmd_path, X_OK) == 0)
 			return (cmd_path);
 		// if (access(ft_strjoin(path[i], argv), X_OK) == 0)
@@ -53,35 +56,28 @@ char	*find_path(char **path, char *argv)
 	return (0);
 }
 
-char	exec_cmd(char **env, char *argv)
+int	exec_cmd(char *path, char **argv)
 {
-	char	**path;
-	char	*cmd_path;
 	//char	**cmd_opt;
-	char	*cmd_args[] = {argv, NULL};
 
-   	path = ft_path(env);
-	cmd_path = find_path(path, argv);
-	//cmd_opt = ft_split(cmd_path, ' ');
-	if (!path)
-	{
-		fprintf(stderr, "No PATH found\n");
-        return -1;
-	}
-	if (cmd_path)
-	{                                                                                                                                   
-		if (execve(cmd_path, cmd_args, env) == -1)
-		{
-        	perror("Error execve");
-        	free(cmd_path);
-	      	exit(1);
-		}
-	}
-    else
-	{
-		fprintf(stderr, "Command not found\n");
-		return (-1);
-	}
+	//cmd_opt = ft_split(argv[2], ' ');
+	
+	execve(path, argv, NULL);
+	
+	//execve(path, argv, NULL);
+	
+	//if (execve(path, cmd_opt, NULL) == -1)
+	// {
+    //  	perror("Error execve");
+    // 	free(path);
+	//     exit(1);
+	// }
+	// else
+	// {
+	// 	free(path);
+	// 	fprintf(stderr, "Command not found\n");
+	// 	return (-1);
+	// }
 	return (0);
 }
 
