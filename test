@@ -1,12 +1,3 @@
-Makefile
-a.out
-ff
-ft_printf
-libft
-notes.c
-obj
-pipex
-pipex.h
-src
-test
-ug
+CFLAGS = -Wall -Wextra -Werror -g -I ./
+	@make -s -C $(LIBFT_DIR) bonus
+	@echo "compilating $@"
