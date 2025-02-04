@@ -6,7 +6,7 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:55:11 by sapupier          #+#    #+#             */
-/*   Updated: 2025/01/30 13:54:14 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:02:52 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ int		main(int argc, char **argv, char **env);
 char	**ft_path(char **env);
 char	*find_path(char **path, char *cmd);
 int		exec_cmd(char *path, char **argv);
-int		open_file(char **argv, int flags);
+int		open_file(char *argv, int flags);
+void	error(const char *message);
+void	create_child_process(char **argv, char **env, int infile, int *pipefd);
 #endif

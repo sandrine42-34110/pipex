@@ -6,7 +6,7 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:58:05 by sapupier          #+#    #+#             */
-/*   Updated: 2025/01/30 13:10:34 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:59:30 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*find_path(char **path, char *cmd)
 
 int	exec_cmd(char *path, char **argv)
 {
-	execve(path, argv, NULL);
+	//execve(path, argv, NULL);
 	if (execve(path, argv, NULL) == -1)
 	{
      	perror("Error execve");
@@ -69,5 +69,11 @@ int	exec_cmd(char *path, char **argv)
 	    exit(1);
 	}
 	return (0);
+}
+
+void error(const char *message)
+{
+	perror(message);
+	exit (1);
 }
 
