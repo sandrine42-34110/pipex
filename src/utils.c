@@ -6,7 +6,7 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:58:05 by sapupier          #+#    #+#             */
-/*   Updated: 2025/02/05 11:02:32 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:09:33 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	open_file(char *argv, int flags)
 	fd = open(argv, flags, 0644);
 	if (fd == -1)
 	{
-		perror("Erreur lors de l'ouverture du fichier");
+		perror("Error opening file");
 		return (-1);
 	}
 	return (fd);
