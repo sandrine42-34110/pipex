@@ -1,3 +1,10 @@
-CFLAGS = -Wall -Wextra -Werror -g -I ./
-	@make -s -C $(LIBFT_DIR) bonus
-	@echo "compilating $@"
+Makefile
+a.out
+ft_printf
+libft
+obj
+pipex
+pipex.h
+src
+test
+test2

@@ -6,7 +6,7 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:18:15 by sapupier          #+#    #+#             */
-/*   Updated: 2025/02/04 17:24:38 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/02/05 09:45:09 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,6 @@ void	child(char **argv, char **env, int *fd)
 	path = ft_path(env);
 	cmd_args = ft_split(argv[2], ' ');
 	cmd_path = find_path(path, cmd_args[0]);
-	
-//	fprintf(stderr, "Debug: Entering child process\n");
-
-	
 	if (!cmd_path)
 		error("Command not found");
 	

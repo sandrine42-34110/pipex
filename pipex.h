@@ -6,7 +6,7 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:55:11 by sapupier          #+#    #+#             */
-/*   Updated: 2025/02/04 15:02:52 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/02/05 08:30:43 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,10 @@
 # include <fcntl.h>
 # include "libft.h"
 
-int		dup2(int oldfd, int newfd);
-int		pipe(int pipefd[2]);
-pid_t	fork(void);
-pid_t	waitpid(pid_t pid, int *status, int options);
-pid_t	wait(int *status);
-//int		execve(char *path, char *argv, char *env);
 int		main(int argc, char **argv, char **env);
-//int		ft_printf(const char *format, ...);
 char	**ft_path(char **env);
 char	*find_path(char **path, char *cmd);
 int		exec_cmd(char *path, char **argv);
 int		open_file(char *argv, int flags);
 void	error(const char *message);
-void	create_child_process(char **argv, char **env, int infile, int *pipefd);
 #endif

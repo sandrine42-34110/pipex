@@ -6,7 +6,7 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:58:05 by sapupier          #+#    #+#             */
-/*   Updated: 2025/02/04 14:59:30 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/02/05 08:30:15 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,9 @@ char	*find_path(char **path, char *cmd)
 {
 	char	*folder;
 	char	*cmd_path;	
-	//char	**cmd;
 	int		i;
 	
 	i = 0;
-	//cmd = ft_split(argv[1], ' ');
 	while (path[i])
 	{
 		folder = ft_strjoin(path[i], "/");
@@ -47,13 +45,11 @@ char	*find_path(char **path, char *cmd)
 			return (NULL);
 		cmd_path = ft_strjoin(folder, cmd);
 		free(folder);
-		//printf("%s\n", cmd_path);
 		if (!cmd_path)
 			return (NULL);
 		if (access(cmd_path, X_OK) == 0)
 			return (cmd_path);
 		free(cmd_path);
-		//free(folder);
 		i++;
 	}
 	return (0);
@@ -61,7 +57,6 @@ char	*find_path(char **path, char *cmd)
 
 int	exec_cmd(char *path, char **argv)
 {
-	//execve(path, argv, NULL);
 	if (execve(path, argv, NULL) == -1)
 	{
      	perror("Error execve");
