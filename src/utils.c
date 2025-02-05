@@ -6,7 +6,7 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:58:05 by sapupier          #+#    #+#             */
-/*   Updated: 2025/02/05 08:30:15 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:09:38 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,17 @@ char	**ft_path(char **env)
 {
 	int		i;
 	char	**path;
-	
+
 	i = 0;
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], "PATH=", 5) == 0)
-		{		
+		{
 			path = ft_split((env[i] + 5), ':');
 			return (path);
 		}
 		i++;
 	}
-
 	return (0);
 }
 
@@ -36,7 +35,7 @@ char	*find_path(char **path, char *cmd)
 	char	*folder;
 	char	*cmd_path;	
 	int		i;
-	
+
 	i = 0;
 	while (path[i])
 	{
@@ -59,16 +58,15 @@ int	exec_cmd(char *path, char **argv)
 {
 	if (execve(path, argv, NULL) == -1)
 	{
-     	perror("Error execve");
-    	free(path);
-	    exit(1);
+		perror("Error execve");
+		free(path);
+		exit(1);
 	}
 	return (0);
 }
 
-void error(const char *message)
+void	error(const char *message)
 {
 	perror(message);
 	exit (1);
 }
-

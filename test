@@ -1,10 +1,12 @@
-Makefile
-a.out
-ft_printf
-libft
-obj
-pipex
-pipex.h
-src
-test
-test2
+NAME = pipex$
+CFLAGS = -Wall -Wextra -Werror -g -I ./$
+	pipex.c \$
+	@make -s -C $(LIBFT_DIR)$
+	@make -s -C $(LIBFT_DIR) bonus$
+	@echo "compilating $@"$
+obj/%.o: src/%.c pipex.h$
+clean:$
+	@make -s -C $(LIBFT_DIR) clean$
+fclean: clean$
+	@make -s -C $(LIBFT_DIR) fclean$
+re: fclean all$

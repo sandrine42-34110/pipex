@@ -6,18 +6,16 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:18:15 by sapupier          #+#    #+#             */
-/*   Updated: 2025/02/05 09:45:09 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:18:16 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-//#include "ft_printf.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
-# include <sys/wait.h>
-
+#include <sys/wait.h>
 
 void	child(char **argv, char **env, int *fd)
 {
@@ -25,7 +23,7 @@ void	child(char **argv, char **env, int *fd)
 	char	**path;
 	char	*cmd_path;
 	char	**cmd_args;
-	
+
 	infile = open(argv[1], O_RDONLY);
 	if (infile == -1)
 		error("Error opening input file");
@@ -41,17 +39,16 @@ void	child(char **argv, char **env, int *fd)
 	cmd_path = find_path(path, cmd_args[0]);
 	if (!cmd_path)
 		error("Command not found");
-	
 	exec_cmd(cmd_path, cmd_args);
 }
 
-void parent(char **argv, char **env, int *fd)
+void	parent(char **argv, char **env, int *fd)
 {
-	int outfile;
-	char **path;
-	char *cmd_path;
-	char **cmd_args;
-	
+	int		outfile;
+	char	**path;
+	char	*cmd_path;
+	char	**cmd_args;
+
 	outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (outfile == -1)
 		error("Error opening input file");
@@ -70,7 +67,7 @@ void parent(char **argv, char **env, int *fd)
 	exec_cmd(cmd_path, cmd_args);
 }
 
-int main(int argc, char **argv, char **env)
+int	main(int argc, char **argv, char **env)
 {
 	int		fd[2];
 	pid_t	pid;
@@ -78,28 +75,20 @@ int main(int argc, char **argv, char **env)
 	if (argc != 5)
 		error("Usage: ./pipex infile cmd1 cmd2 outfile");
 	if (pipe(fd) == -1)
-		error("Error creating pipe");  
+		error("Error creating pipe");
 	pid = fork();
 	if (pid == -1)
-		error("Error creating pipe");
+		error("Error creating process");
 	else if (pid == 0)
-	{
 		child(argv, env, fd);
-	}
-	else
-	{
-		pid = fork();
-		if (pid == -1)
-			error("Error forking process");
-		else if (pid == 0)
-			parent(argv, env, fd);
-		else 
-		{
-			close(fd[0]);
-			close(fd[1]);
-			waitpid(-1, NULL, 0);
-			waitpid(-1, NULL, 0);
-		}
-	}
+	pid = fork();
+	if (pid == -1)
+		error("Error forking process");
+	else if (pid == 0)
+		parent(argv, env, fd);
+	close(fd[0]);
+	close(fd[1]);
+	waitpid(-1, NULL, 0);
+	waitpid(-1, NULL, 0);
 	return (0);
 }
