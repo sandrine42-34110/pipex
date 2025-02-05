@@ -6,11 +6,25 @@
 /*   By: sapupier <sapupier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:58:05 by sapupier          #+#    #+#             */
-/*   Updated: 2025/02/05 10:09:38 by sapupier         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:02:32 by sapupier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+int	open_file(char *argv, int flags)
+{
+	int		fd;
+
+	(void) flags;
+	fd = open(argv, flags, 0644);
+	if (fd == -1)
+	{
+		perror("Erreur lors de l'ouverture du fichier");
+		return (-1);
+	}
+	return (fd);
+}
 
 char	**ft_path(char **env)
 {
@@ -36,6 +50,8 @@ char	*find_path(char **path, char *cmd)
 	char	*cmd_path;	
 	int		i;
 
+	if (access(cmd, X_OK) == 0)
+		return (ft_strdup(cmd));
 	i = 0;
 	while (path[i])
 	{

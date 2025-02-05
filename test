@@ -1,12 +1,10 @@
-NAME = pipex$
-CFLAGS = -Wall -Wextra -Werror -g -I ./$
-	pipex.c \$
-	@make -s -C $(LIBFT_DIR)$
-	@make -s -C $(LIBFT_DIR) bonus$
-	@echo "compilating $@"$
-obj/%.o: src/%.c pipex.h$
-clean:$
-	@make -s -C $(LIBFT_DIR) clean$
-fclean: clean$
-	@make -s -C $(LIBFT_DIR) fclean$
-re: fclean all$
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
+NAME = pipex
+SRC = main.c \
+	utils.c
+	@$(CC) $(CFLAGS) ${OBJS} -o $(NAME) $(LIBFT) -I ./libft
+	@echo "compilating $@"
+obj/%.o: src/%.c pipex.h
+	@mkdir -p obj
+	@${CC} ${CFLAGS} -c $< -o $@ -I ./libft
